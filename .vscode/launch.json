@@ -1,0 +1,7 @@
+{
+    "name": "Python: azure_pricing_api",
+    "type": "python",
+    "request": "launch",
+    "program": "${file}",
+    "cwd": "${workspaceFolder}"
+  }

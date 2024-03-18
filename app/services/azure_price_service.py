@@ -8,7 +8,11 @@ from fastapi import UploadFile
 def fetch_and_update_azure_prices():
     db = SessionLocal()
     try:
-        response = requests.get("https://api.example.com/azure-prices")
+        # URL inicial
+        currency = 'brlb'
+        url = f"https://prices.azure.com/api/retail/prices?currencyCode=%27{currency}%27&$filter=serviceFamily%20eq%20%27Compute%27%20and%20armRegionName%20eq%20%27brazilsouth%27%20or%20armRegionName%20eq%20%27brazilsouthest%27"
+
+        response = requests.get(url)
         prices = response.json()
         for price_data in prices:
             product_detail = db.query(ProductDetails).filter_by(armSkuName=price_data["productName"]).first()
@@ -17,7 +21,7 @@ def fetch_and_update_azure_prices():
                 db.add(product_detail)
             azure_price = db.query(AzurePrice).filter_by(productName=price_data["productName"]).first()
             if not azure_price:
-                azure_price = AzurePrice(productName=price_data["productName"], product_detail=product_detail, currencyCode="USD", retailPrice=price_data["retailPrice"], unitPrice=price_data["unitPrice"])
+                azure_price = AzurePrice(productName=price_data["productName"], product_detail=product_detail, currencyCode=currency, retailPrice=price_data["retailPrice"], unitPrice=price_data["unitPrice"])
                 db.add(azure_price)
         db.commit()
     finally:
