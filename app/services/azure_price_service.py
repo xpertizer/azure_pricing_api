@@ -95,12 +95,13 @@ async def load_product_details_from_csv(file: UploadFile):
 
 # Modificação da função para incluir filtros opcionais
 
-def criar_retorno_precos_dto(dados, filtro_cpu=None, filtro_ram=None, filtro_disco=None):
+def criar_retorno_precos_dto(filtro_cpu=None, filtro_ram=None, filtro_disco=None):
+    dados = get_azure_prices()
     precos = []
     for item in dados:
         # Ajustando os campos conforme a estrutura do objeto fornecido
-        provedor = item['serviceName']
-        nomeMaquina = item['skuName']
+        provedor = 'Azure'
+        nomeMaquina = item['armSkuName']
         valor = item['retailPrice']
         cpu = item['product_detail']['vCPUs']
         disco = "N/A"  # O objeto fornecido não contém informações diretas sobre o disco
