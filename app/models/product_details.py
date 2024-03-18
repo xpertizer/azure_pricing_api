@@ -8,4 +8,5 @@ class ProductDetails(Base):
     vCPUs = Column(Integer, nullable=False)
     memory = Column(Float, nullable=False)
     
+    # A relação "azure_price" é definida aqui para conectar cada detalhe do produto a um preço específico do Azure.
     azure_price = relationship("AzurePrice", back_populates="product_detail", uselist=False)
