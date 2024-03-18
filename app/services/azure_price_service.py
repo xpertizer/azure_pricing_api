@@ -1,4 +1,7 @@
 from datetime import datetime
+
+from app.models import preco
+from app.models.retornoprecosdto import RetornoPrecosDTO
 from ..database.session import SessionLocal
 from ..models.azure_price import AzurePrice
 from ..models.product_details import ProductDetails
@@ -88,3 +91,30 @@ async def load_product_details_from_csv(file: UploadFile):
         #raise e
     finally:
         db.close()
+
+
+# Modificação da função para incluir filtros opcionais
+
+def criar_retorno_precos_dto(dados, filtro_cpu=None, filtro_ram=None, filtro_disco=None):
+    precos = []
+    for item in dados:
+        # Ajustando os campos conforme a estrutura do objeto fornecido
+        provedor = item['serviceName']
+        nomeMaquina = item['skuName']
+        valor = item['retailPrice']
+        cpu = item['product_detail']['vCPUs']
+        disco = "N/A"  # O objeto fornecido não contém informações diretas sobre o disco
+        ram = item['product_detail']['memory']
+        
+        # Aplicando os filtros
+        if filtro_cpu is not None and filtro_cpu != cpu:
+            continue  # Pula para o próximo item se o filtro de CPU não corresponder
+        if filtro_ram is not None and filtro_ram != ram:
+            continue  # Pula para o próximo item se o filtro de RAM não corresponder
+        # O filtro de disco é ignorado, pois não temos essa informação nos dados fornecidos
+        
+        preco = preco.Preco(provedor, nomeMaquina, valor, cpu, disco, ram)
+        precos.append(preco)
+    
+    return RetornoPrecosDTO(preco)
+
