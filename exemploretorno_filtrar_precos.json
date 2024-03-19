@@ -1,0 +1,101 @@
+{
+    "precos": [
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_F4s",
+        "valor": "0.149",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_A4_v2",
+        "valor": "1.3351",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_A4_v2",
+        "valor": "6898.0658",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_A4_v2",
+        "valor": "13331.3156",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_F4s",
+        "valor": "0.2305",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_F4s",
+        "valor": "0.149",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_D4ls_v5",
+        "valor": "0.8802",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_D4ls_v5",
+        "valor": "0.2591",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_F4s_v2",
+        "valor": "0.2205",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_F4s_v2",
+        "valor": "0.1296",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_A4_v2",
+        "valor": "0.8011",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      },
+      {
+        "provedor": "Azure",
+        "nomeMaquina": "Standard_A4_v2",
+        "valor": "0.267",
+        "cpu": 4,
+        "disco": "N/A",
+        "ram": 8
+      }
+    ],
+    "quantidade": 12
+  }

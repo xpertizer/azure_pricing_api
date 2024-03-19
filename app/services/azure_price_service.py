@@ -96,26 +96,35 @@ async def load_product_details_from_csv(file: UploadFile):
 # Modificação da função para incluir filtros opcionais
 
 def criar_retorno_precos_dto(filtro_cpu=None, filtro_ram=None, filtro_disco=None):
-    dados = get_azure_prices()
-    precos = []
-    for item in dados:
-        # Ajustando os campos conforme a estrutura do objeto fornecido
-        provedor = 'Azure'
-        nomeMaquina = item['armSkuName']
-        valor = item['retailPrice']
-        cpu = item['product_detail']['vCPUs']
-        disco = "N/A"  # O objeto fornecido não contém informações diretas sobre o disco
-        ram = item['product_detail']['memory']
-        
-        # Aplicando os filtros
-        if filtro_cpu is not None and filtro_cpu != cpu:
-            continue  # Pula para o próximo item se o filtro de CPU não corresponder
-        if filtro_ram is not None and filtro_ram != ram:
-            continue  # Pula para o próximo item se o filtro de RAM não corresponder
-        # O filtro de disco é ignorado, pois não temos essa informação nos dados fornecidos
-        
-        preco = preco.Preco(provedor, nomeMaquina, valor, cpu, disco, ram)
-        precos.append(preco)
+    try:
+        # Modifica a função para receber os filtros de CPU, RAM e disco
+        # e aplicá-los aos preços do Azure antes de retornar os resultados.
+        # A função agora aceita os parâmetros filtro_cpu, filtro_ram e filtro_disco
+        # e os aplica aos preços do Azure antes de retornar os resultados.
+        dados = get_azure_prices()
+        precos = []
+        for item in dados:
+            if item.armSkuName is None or item.armSkuName.strip() == '' or item.product_detail is None :
+                continue
+            # Ajustando os campos conforme a estrutura do objeto fornecido
+            provedor = 'Azure'
+            nomeMaquina = item.armSkuName
+            valor = item.retailPrice
+            cpu = item.product_detail.vCPUs
+            disco = "N/A"  # O objeto fornecido não contém informações diretas sobre o disco
+            ram = item.product_detail.memory
+            
+            # Aplicando os filtros
+            if filtro_cpu is not None and filtro_cpu != cpu:
+                continue  # Pula para o próximo item se o filtro de CPU não corresponder
+            if filtro_ram is not None and filtro_ram != ram:
+                continue  # Pula para o próximo item se o filtro de RAM não corresponder
+            # O filtro de disco é ignorado, pois não temos essa informação nos dados fornecidos
+            
+            price = preco.Preco(provedor, nomeMaquina, valor, cpu, disco, ram)
+            precos.append(price)
+        return RetornoPrecosDTO(precos=precos)
+    except Exception as e:
+        raise e
     
-    return RetornoPrecosDTO(preco)
 

@@ -48,5 +48,10 @@ A API possui os seguintes endpoints:
 - POST /azure-pricing/carga-produtos: Carrega detalhes dos produtos via arquivo CSV.
 - GET /azure-pricing/atualizar-precos: Atualiza os preços a partir da API da Azure.
 - GET /azure-pricing/listar-precos: Lista os preços e detalhes dos produtos.
+- GET /azure_pricing/filtrar-precos: Retorna a lista de precos filtrando por cpu e ram
+    exemplo cUrl
+        curl -X 'GET' \
+            'http://127.0.0.1:8000/azure-pricing/filtrar-precos?cpu=4&ram=8' \
+            -H 'accept: application/json'
 
 Consulte a documentação da API gerada pelo FastAPI para mais detalhes: http://localhost:8000/docs
