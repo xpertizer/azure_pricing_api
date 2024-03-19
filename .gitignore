@@ -1,2 +1,16 @@
 node_modules/**/*/
 venv/**/*/
+
+# Ignora todos os arquivos com extensão .pyc
+*.pyc
+# Ignora o diretório "__pycache__"
+__pycache__/
+
+# Ignora todos os diretórios com o nome "migrations" ou que começam com "migrations" seguindo de um número (por exemplo, "migrations123")
+# Ignora qualquer arquivo que comece com "migrations" e tenha a extensão .py (ex: migrations.py)
+migrations/*.py
+
+# Ignora todos os arquivos de configuração do editor de texto Visual Studio Code (.vscode/)
+.vscode/
+```
+

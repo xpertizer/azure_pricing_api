@@ -7,5 +7,13 @@
             "database": "${workspaceFolder:azure_pricing_api}/sql_app.db",
             "name": "azure_pricing_api"
         }
-    ]
+    ],
+    "python.analysis.extraPaths": [
+        "./app/services"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

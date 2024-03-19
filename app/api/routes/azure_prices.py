@@ -26,6 +26,7 @@ def listar_precos():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @router.get("/filtrar-precos")
 def filtrar_precos(cpu: int = Query(None), ram: float = Query(None), disco: str = Query(None)):
     try:
