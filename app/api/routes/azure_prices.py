@@ -3,22 +3,16 @@ from ...services.azure_price_service import fetch_and_update_azure_prices, get_a
 
 router = APIRouter()
 
-@router.get("/atualizar-precos")
+@router.get("/RefreshPricesFromAzureRetailPricesApi")
 def atualizar_precos():
     try:
         fetch_and_update_azure_prices()
-        return {"message": "Preços atualizados com sucesso."}
+        return {"message": "Prices Updated Successfully."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-@router.post("/carga-produtos")
-async def carga_produtos(file: UploadFile = File(...)):
-    try:
-        await load_product_details_from_csv(file)
-        return {"message": "Detalhes dos produtos carregados com sucesso."}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e.message))
+
     
-@router.get("/listar-precos")
+@router.get("/OriginalAzurePriceList")
 def listar_precos():
     try:
         prices = get_azure_prices()
@@ -27,7 +21,7 @@ def listar_precos():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/filtrar-precos")
+@router.get("/filtered-prices")
 def filtrar_precos(cpu: int = Query(None), ram: float = Query(None), disco: str = Query(None)):
     try:
         # Chamada à função criar_retorno_precos_dto com os filtros recebidos
